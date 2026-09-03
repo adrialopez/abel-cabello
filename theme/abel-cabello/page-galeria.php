@@ -16,7 +16,7 @@ get_header();
 
 <section class="page-hero container">
   <p class="section-label">En directo</p>
-  <h1 style="font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.5rem);text-transform:uppercase;">Galería completa</h1>
+  <h1 style="font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.5rem);text-transform:uppercase;">Galería</h1>
   <p>Fotos y clips reales de los últimos eventos de Abel Cabello.</p>
 </section>
 

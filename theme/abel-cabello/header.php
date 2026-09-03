@@ -16,7 +16,7 @@
         wp_nav_menu( [ 'theme_location' => 'primary', 'container' => false, 'menu_class' => '', 'fallback_cb' => false ] );
     else : ?>
       <a href="<?php echo esc_url( home_url( '/#servicios' ) ); ?>">Servicios</a>
-      <a href="<?php echo esc_url( home_url( '/galeria/' ) ); ?>">Galería</a>
+      <a href="<?php echo esc_url( home_url( '/#galeria' ) ); ?>">Galería</a>
       <a href="<?php echo esc_url( home_url( '/#testimonios' ) ); ?>">Opiniones</a>
       <a href="<?php echo esc_url( home_url( '/#bio' ) ); ?>">Sobre mí</a>
       <a href="<?php echo esc_url( home_url( '/#agenda' ) ); ?>">Agenda</a>

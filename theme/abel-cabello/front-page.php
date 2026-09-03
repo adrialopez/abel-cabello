@@ -110,16 +110,33 @@ $uri = get_template_directory_uri();
       $featured_id = $featured_query->have_posts() ? $featured_query->posts[0]->ID : 0;
       wp_reset_postdata();
 
-      $gal_query = new WP_Query( [
+      // Also guarantee at least one video shows in the home preview, not just photos.
+      $video_query = new WP_Query( [
           'post_type'      => 'ac_galeria',
-          'posts_per_page' => 9,
+          'posts_per_page' => 1,
           'orderby'        => 'menu_order date',
           'order'          => 'ASC',
+          'meta_query'     => [ [ 'key' => 'tipo', 'value' => 'video', 'compare' => '=' ] ],
           'post__not_in'   => $featured_id ? [ $featured_id ] : [],
       ] );
-      if ( $featured_id || $gal_query->have_posts() ) :
+      $video_id = $video_query->have_posts() ? $video_query->posts[0]->ID : 0;
+      wp_reset_postdata();
+
+      $exclude_ids = array_filter( [ $featured_id, $video_id ] );
+      $gal_query = new WP_Query( [
+          'post_type'      => 'ac_galeria',
+          'posts_per_page' => 9 - count( $exclude_ids ),
+          'orderby'        => 'menu_order date',
+          'order'          => 'ASC',
+          'post__not_in'   => $exclude_ids,
+      ] );
+      if ( $featured_id || $video_id || $gal_query->have_posts() ) :
           $i = 0;
-          $posts_to_show = $featured_id ? array_merge( [ get_post( $featured_id ) ], array_slice( $gal_query->posts, 0, 8 ) ) : $gal_query->posts;
+          $posts_to_show = array_filter( [
+              $featured_id ? get_post( $featured_id ) : null,
+              $video_id ? get_post( $video_id ) : null,
+          ] );
+          $posts_to_show = array_merge( $posts_to_show, $gal_query->posts );
           foreach ( $posts_to_show as $gal_post ) :
               setup_postdata( $gal_post );
               $i++;
