@@ -17,7 +17,7 @@ $uri = get_template_directory_uri();
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <p class="hero-tag">Cantante para Eventos · Showman · Barcelona</p>
+    <p class="hero-tag">Cantante · Showman · Barcelona</p>
     <h1>Abel <em>Cabello</em></h1>
     <p class="hero-sub">
       Pop, rock, rumba y boleros de los 60 a hoy — con la especialidad en los 80 y 90, en español e inglés.
