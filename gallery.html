@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Galería — Abel Cabello</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+  .page-hero { padding: 160px 0 60px; text-align: center; }
+  .page-hero p { color: var(--gray); max-width: 520px; margin: 1rem auto 0; }
+  .gal-filters { display:flex; gap:0.75rem; justify-content:center; margin-bottom: 2.5rem; }
+  .gal-filter { padding:0.55rem 1.25rem; border-radius:999px; border:1px solid var(--line); color:var(--gray); font-size:0.82rem; cursor:pointer; background:none; font-family:var(--sans); }
+  .gal-filter.active { border-color: var(--gold); color: var(--gold); }
+  .full-gal-grid { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:240px; gap:8px; padding-bottom:100px; }
+  .full-gal-grid .gal-item[data-hidden="1"] { display:none; }
+  @media (max-width: 900px) { .full-gal-grid { grid-template-columns:repeat(2,1fr); grid-auto-rows:200px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <a href="index.html" class="site-logo"><img src="images/brand/logo.png" alt="Abel Cabello" /></a>
+  <nav class="site-nav" id="site-nav">
+    <a href="index.html#bio">Sobre mí</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="gallery.html">Galería</a>
+    <a href="index.html#agenda">Agenda</a>
+    <a href="index.html#testimonios">Opiniones</a>
+    <a href="index.html#contacto">Contacto</a>
+  </nav>
+  <div class="header-cta">
+    <a href="index.html#contacto" class="btn btn-outline">Contacto</a>
+    <a href="https://wa.me/34675169667" target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="page-hero container">
+  <p class="section-label">En directo</p>
+  <h1 style="font-size:clamp(2.2rem,5vw,3.5rem);">Galería completa</h1>
+  <p>Fotos y clips reales de los últimos eventos de Abel Cabello.</p>
+</section>
+
+<div class="container">
+  <div class="gal-filters">
+    <button class="gal-filter active" data-filter="all">Todo</button>
+    <button class="gal-filter" data-filter="image">Fotos</button>
+    <button class="gal-filter" data-filter="video">Vídeos</button>
+  </div>
+
+  <div class="full-gal-grid" id="gallery-grid">
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-actuacion-01.jpg">
+        <img src="images/gallery/abel-actuacion-01.jpg" alt="Abel Cabello — Actuacion 01" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-ambiente-tunel.jpg">
+        <img src="images/gallery/abel-ambiente-tunel.jpg" alt="Abel Cabello — Ambiente tunel" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-atardecer-actuacion.jpg">
+        <img src="images/gallery/abel-atardecer-actuacion.jpg" alt="Abel Cabello — Atardecer actuacion" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-atardecer-microfono.jpg">
+        <img src="images/gallery/abel-atardecer-microfono.jpg" alt="Abel Cabello — Atardecer microfono" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-banda-grupo.jpg">
+        <img src="images/gallery/abel-banda-grupo.jpg" alt="Abel Cabello — Banda grupo" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-dj-set.jpg">
+        <img src="images/gallery/abel-dj-set.jpg" alt="Abel Cabello — Dj set" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-dramatico-01.jpg">
+        <img src="images/gallery/abel-dramatico-01.jpg" alt="Abel Cabello — Dramatico 01" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-escenario-01.jpg">
+        <img src="images/gallery/abel-escenario-01.jpg" alt="Abel Cabello — Escenario 01" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-evento-carpa.jpg">
+        <img src="images/gallery/abel-evento-carpa.jpg" alt="Abel Cabello — Evento carpa" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-evento-detalle.jpg">
+        <img src="images/gallery/abel-evento-detalle.jpg" alt="Abel Cabello — Evento detalle" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-expresivo-01.jpg">
+        <img src="images/gallery/abel-expresivo-01.jpg" alt="Abel Cabello — Expresivo 01" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-fans-grupo.jpg">
+        <img src="images/gallery/abel-fans-grupo.jpg" alt="Abel Cabello — Fans grupo" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-grito-escenario-01.jpg">
+        <img src="images/gallery/abel-grito-escenario-01.jpg" alt="Abel Cabello — Grito escenario 01" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-grito-escenario-02.jpg">
+        <img src="images/gallery/abel-grito-escenario-02.jpg" alt="Abel Cabello — Grito escenario 02" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-grupo-calle.jpg">
+        <img src="images/gallery/abel-grupo-calle.jpg" alt="Abel Cabello — Grupo calle" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-luces-estrellas-01.jpg">
+        <img src="images/gallery/abel-luces-estrellas-01.jpg" alt="Abel Cabello — Luces estrellas 01" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-luces-estrellas-02.jpg">
+        <img src="images/gallery/abel-luces-estrellas-02.jpg" alt="Abel Cabello — Luces estrellas 02" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-mesa-sonido.jpg">
+        <img src="images/gallery/abel-mesa-sonido.jpg" alt="Abel Cabello — Mesa sonido" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-microfono-01.jpg">
+        <img src="images/gallery/abel-microfono-01.jpg" alt="Abel Cabello — Microfono 01" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-microfono-02.jpg">
+        <img src="images/gallery/abel-microfono-02.jpg" alt="Abel Cabello — Microfono 02" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-monologo-traje.jpg">
+        <img src="images/gallery/abel-monologo-traje.jpg" alt="Abel Cabello — Monologo traje" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-neon-better-together.jpg">
+        <img src="images/gallery/abel-neon-better-together.jpg" alt="Abel Cabello — Neon better together" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-publico-01.jpg">
+        <img src="images/gallery/abel-publico-01.jpg" alt="Abel Cabello — Publico 01" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-publico-02.jpg">
+        <img src="images/gallery/abel-publico-02.jpg" alt="Abel Cabello — Publico 02" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-publico-03.jpg">
+        <img src="images/gallery/abel-publico-03.jpg" alt="Abel Cabello — Publico 03" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-restaurante-evento.jpg">
+        <img src="images/gallery/abel-restaurante-evento.jpg" alt="Abel Cabello — Restaurante evento" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-retrato-blanco-negro.jpg">
+        <img src="images/gallery/abel-retrato-blanco-negro.jpg" alt="Abel Cabello — Retrato blanco negro" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="image" data-src="images/gallery/abel-retrato-chaqueta.jpg">
+        <img src="images/gallery/abel-retrato-chaqueta.jpg" alt="Abel Cabello — Retrato chaqueta" loading="lazy" />
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-acustico-duo.mp4" data-poster="images/gallery/video/abel-clip-acustico-duo-poster.jpg">
+        <img src="images/gallery/video/abel-clip-acustico-duo-poster.jpg" alt="Abel Cabello — Acustico duo" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-cerca-microfono.mp4" data-poster="images/gallery/video/abel-clip-cerca-microfono-poster.jpg">
+        <img src="images/gallery/video/abel-clip-cerca-microfono-poster.jpg" alt="Abel Cabello — Cerca microfono" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-expresivo.mp4" data-poster="images/gallery/video/abel-clip-expresivo-poster.jpg">
+        <img src="images/gallery/video/abel-clip-expresivo-poster.jpg" alt="Abel Cabello — Expresivo" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-fans.mp4" data-poster="images/gallery/video/abel-clip-fans-poster.jpg">
+        <img src="images/gallery/video/abel-clip-fans-poster.jpg" alt="Abel Cabello — Fans" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-fiesta-purpura.mp4" data-poster="images/gallery/video/abel-clip-fiesta-purpura-poster.jpg">
+        <img src="images/gallery/video/abel-clip-fiesta-purpura-poster.jpg" alt="Abel Cabello — Fiesta purpura" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-grupo-escenario.mp4" data-poster="images/gallery/video/abel-clip-grupo-escenario-poster.jpg">
+        <img src="images/gallery/video/abel-clip-grupo-escenario-poster.jpg" alt="Abel Cabello — Grupo escenario" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-pirotecnia.mp4" data-poster="images/gallery/video/abel-clip-pirotecnia-poster.jpg">
+        <img src="images/gallery/video/abel-clip-pirotecnia-poster.jpg" alt="Abel Cabello — Pirotecnia" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-playa-dia.mp4" data-poster="images/gallery/video/abel-clip-playa-dia-poster.jpg">
+        <img src="images/gallery/video/abel-clip-playa-dia-poster.jpg" alt="Abel Cabello — Playa dia" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-publico-manos.mp4" data-poster="images/gallery/video/abel-clip-publico-manos-poster.jpg">
+        <img src="images/gallery/video/abel-clip-publico-manos-poster.jpg" alt="Abel Cabello — Publico manos" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+      <div class="gal-item" data-type="video" data-src="images/gallery/video/abel-clip-spotlight-solo.mp4" data-poster="images/gallery/video/abel-clip-spotlight-solo-poster.jpg">
+        <img src="images/gallery/video/abel-clip-spotlight-solo-poster.jpg" alt="Abel Cabello — Spotlight solo" loading="lazy" />
+        <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(19,17,16,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
+      </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#8249;</button>
+  <div class="lightbox-content" id="lightbox-content"></div>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next">&#8250;</button>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo"><img src="images/brand/logo.png" alt="Abel Cabello" /></a>
+      <div class="footer-social">
+        <a href="https://instagram.com/abel.cabello" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+        <a href="https://wa.me/34675169667" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="footer-year"></span> Abel Cabello. Todos los derechos reservados.</span>
+      <div class="footer-links">
+        <a href="privacidad.html">Política de Privacidad</a>
+        <a href="cookies.html">Política de Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  document.querySelectorAll('.gal-filter').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.gal-filter').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('#gallery-grid .gal-item').forEach(function(item) {
+        var show = filter === 'all' || item.getAttribute('data-type') === filter;
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
