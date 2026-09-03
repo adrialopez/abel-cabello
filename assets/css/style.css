@@ -14,7 +14,8 @@
   --wine: #a53751;
   --line: rgba(250, 243, 230, 0.1);
   --radius: 16px;
-  --serif: "Fraunces", Georgia, serif;
+  --serif: "Poppins", "Manrope", sans-serif;
+  --display: "Archivo Black", "Poppins", sans-serif;
   --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -38,13 +39,22 @@ a { color: inherit; text-decoration: none; }
 
 h1, h2, h3, h4 {
   font-family: var(--serif);
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
   line-height: 1.15;
 }
 
-h2 { font-size: clamp(2rem, 4vw, 3rem); }
-h2 em, h1 em { font-style: italic; color: var(--gold); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; letter-spacing: -0.01em; }
+h2 em, h1 em { font-style: normal; color: var(--gold); }
+
+.wordmark {
+  font-family: var(--serif);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 1.15rem;
+}
+.wordmark .accent { color: var(--gold); }
 
 p { margin: 0 0 1rem; }
 
@@ -188,9 +198,13 @@ section { position: relative; }
   margin-bottom: 1.5rem;
 }
 .hero h1 {
+  font-family: var(--display);
   font-size: clamp(2.75rem, 8vw, 5.5rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
   color: var(--cream);
 }
+.hero h1 em { font-family: var(--display); }
 .hero-sub {
   max-width: 620px;
   margin: 1.75rem auto 2.5rem;
@@ -228,15 +242,15 @@ section { position: relative; }
   align-items: center;
 }
 .bio-image { position: relative; }
-.bio-image img { border-radius: var(--radius); }
+.bio-image img { border-radius: var(--radius); position: relative; z-index: 1; }
 .bio-image::before {
   content: '';
   position: absolute;
-  top: -18px; left: -18px;
-  width: 100%; height: 100%;
-  border: 1px solid var(--gold-dim);
+  top: 18px; left: -18px;
+  right: -18px; bottom: -18px;
+  background: var(--gold);
   border-radius: var(--radius);
-  z-index: -1;
+  z-index: 0;
 }
 .bio-text p { color: var(--gray); font-size: 1.05rem; }
 .bio-badges {
