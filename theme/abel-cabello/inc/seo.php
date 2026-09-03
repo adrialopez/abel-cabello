@@ -10,8 +10,8 @@ function ac_seo_meta() {
 
     if ( is_front_page() ) {
         return [
-            'title'       => 'Abel Cabello — Showman y Cantante para Bodas y Eventos en Barcelona',
-            'description' => 'Abel Cabello, showman y cantante en Barcelona. Shows en directo, DJ y monólogos para bodas, eventos de empresa y fiestas privadas. Más de 80 canciones en repertorio. Reserva tu fecha.',
+            'title'       => 'Abel Cabello — Cantante para Eventos en Barcelona | Showman',
+            'description' => 'Abel Cabello, cantante para eventos en Barcelona: fiestas privadas, empresas y bodas. También showman, DJ y monólogos en directo. Más de 80 canciones en repertorio. Reserva tu fecha.',
             'image'       => $default_image,
         ];
     }
@@ -107,7 +107,7 @@ add_action( 'wp_head', function () {
         '@context'          => 'https://schema.org',
         '@type'             => 'EntertainmentBusiness',
         'name'              => 'Abel Cabello',
-        'description'       => 'Showman y cantante en Barcelona: shows en directo, DJ y monólogos para bodas, eventos de empresa y fiestas privadas.',
+        'description'       => 'Cantante para eventos en Barcelona: fiestas privadas, eventos de empresa y bodas. También showman, con DJ y monólogos en directo.',
         'url'               => home_url( '/' ),
         'image'             => $uri . '/images/gallery/abel-escenario-01.jpg',
         'telephone'         => '+34629220296',
