@@ -572,7 +572,6 @@ section { position: relative; }
 @media (max-width: 700px) {
   .site-nav, .header-cta { display: none; }
   .hamburger { display: flex; }
-  .wa-float { display: none; }
   .site-nav.open {
     display: flex;
     position: fixed;
