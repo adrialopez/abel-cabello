@@ -15,7 +15,7 @@ function ac_theme_setup() {
 add_action( 'after_setup_theme', 'ac_theme_setup' );
 
 function ac_enqueue_assets() {
-    $ver = '1.0.6';
+    $ver = '1.0.7';
     $uri = get_template_directory_uri();
 
     wp_enqueue_style( 'ac-fonts',
