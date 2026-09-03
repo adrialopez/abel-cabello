@@ -5,7 +5,7 @@
 get_header();
 ?>
 <style>
-  .page-hero { padding: 160px 0 60px; text-align: center; }
+  .page-hero { padding-top: 160px; padding-bottom: 60px; text-align: center; }
   .page-hero p { color: var(--gray); max-width: 520px; margin: 1rem auto 0; }
   .gal-filters { display:flex; gap:0.75rem; justify-content:center; margin-bottom: 2.5rem; }
   .gal-filter { padding:0.55rem 1.25rem; border-radius:999px; border:1px solid var(--line); color:var(--gray); font-size:0.82rem; cursor:pointer; background:none; font-family:var(--sans); }

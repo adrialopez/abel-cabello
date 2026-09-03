@@ -39,6 +39,21 @@ function ac_seo_meta() {
     ];
 }
 
+// Keep legal pages out of the XML sitemap (they're set to noindex above)
+add_filter( 'wp_sitemaps_posts_query_args', function ( $args, $post_type ) {
+    if ( 'page' === $post_type ) {
+        $legal = [
+            get_page_by_path( 'politica-de-privacidad' ),
+            get_page_by_path( 'politica-de-cookies' ),
+        ];
+        $ids = array_filter( array_map( function ( $p ) { return $p ? $p->ID : 0; }, $legal ) );
+        if ( $ids ) {
+            $args['post__not_in'] = array_merge( $args['post__not_in'] ?? [], $ids );
+        }
+    }
+    return $args;
+}, 10, 2 );
+
 // Custom <title>
 add_filter( 'pre_get_document_title', function () {
     return ac_seo_meta()['title'];
@@ -55,6 +70,9 @@ add_action( 'wp_head', function () {
     ?>
     <meta name="description" content="<?php echo esc_attr( $meta['description'] ); ?>" />
     <meta name="theme-color" content="#0a0a0b" />
+    <?php if ( is_page( 'politica-de-privacidad' ) || is_page( 'politica-de-cookies' ) ) : ?>
+    <meta name="robots" content="noindex, follow" />
+    <?php endif; ?>
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Abel Cabello" />

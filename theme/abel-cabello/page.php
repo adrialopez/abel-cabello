@@ -5,7 +5,7 @@
 get_header();
 ?>
 <style>
-  .legal { padding: 160px 0 100px; max-width: 780px; margin: 0 auto; }
+  .legal { padding-top: 160px; padding-bottom: 100px; max-width: 780px; margin: 0 auto; }
   .legal h1 { font-family: var(--serif); text-transform: uppercase; font-size: clamp(2rem,4vw,2.75rem); margin-bottom: 2.5rem; }
   .legal h2 { font-family: var(--serif); font-size: 1.3rem; margin: 2.5rem 0 1rem; }
   .legal p, .legal li { color: var(--gray); font-size: 0.95rem; line-height: 1.7; }
