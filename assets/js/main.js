@@ -3,6 +3,38 @@
   var yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Hero slider
+  var slider = document.getElementById('hero-slider');
+  if (slider) {
+    var slides = Array.prototype.slice.call(slider.querySelectorAll('.hero-slide'));
+    var dotsWrap = document.getElementById('hero-dots');
+    var current = 0;
+    var timer;
+
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Imagen ' + (i + 1));
+      dot.addEventListener('click', function () { goTo(i); resetTimer(); });
+      dotsWrap.appendChild(dot);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.hero-dot'));
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    function next() { goTo((current + 1) % slides.length); }
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(next, 5500);
+    }
+    resetTimer();
+  }
+
   // Header scroll state
   var header = document.getElementById('site-header');
   window.addEventListener('scroll', function () {
