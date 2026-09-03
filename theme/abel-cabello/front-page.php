@@ -28,47 +28,17 @@ $uri = get_template_directory_uri();
       <a href="#contacto" class="btn btn-gold">Reserva tu fecha</a>
       <a href="#servicios" class="btn btn-outline">Ver servicios</a>
     </div>
+    <div class="hero-trust fade-up">
+      <span>★★★★★ <strong>5.0</strong> en opiniones</span>
+      <span class="hero-trust-sep">·</span>
+      <span>Mejor Profesional 2019–2023</span>
+      <span class="hero-trust-sep">·</span>
+      <span>Barcelona y alrededores</span>
+    </div>
   </div>
 
   <div class="hero-dots" id="hero-dots"></div>
   <div class="hero-scroll">Descubre más ↓</div>
-</section>
-
-<!-- ============ BIO ============ -->
-<section class="bio" id="bio">
-  <div class="container bio-grid">
-    <div class="bio-image fade-up">
-      <img src="<?php echo esc_url( $uri ); ?>/images/gallery/abel-retrato-chaqueta.jpg" alt="Abel Cabello en directo" />
-    </div>
-    <div class="bio-text">
-      <p class="section-label fade-up">Sobre mí</p>
-      <h2 class="fade-up">Cercano en el escenario,<br><em>profesional</em> en cada detalle.</h2>
-      <p class="fade-up">
-        Empecé mi carrera profesional tras pasar por «Lluvia de Estrellas» de TVE, donde el público me
-        descubrió — y desde entonces no he dejado de subirme a un escenario. Dos años de gira por toda
-        España después, he tenido la suerte de actuar en salas como <strong>Luz de Gas</strong> y en el
-        <strong>Palau de la Música Catalana</strong>.
-      </p>
-      <p class="fade-up">
-        Me defino como un showman polifacético: canto pop, rock, rumba, melódico y boleros de los años 60
-        hasta hoy, con los 80 y los 90 como mi terreno favorito, en español e inglés. Y entre canción y
-        canción, siempre hay hueco para el humor — el monólogo y la complicidad con el público son parte
-        de mi sello.
-      </p>
-      <div class="bio-badges fade-up">
-        <span class="badge">TVE — Lluvia de Estrellas</span>
-        <span class="badge">Luz de Gas, Barcelona</span>
-        <span class="badge">Palau de la Música Catalana</span>
-        <span class="badge">80+ canciones en repertorio</span>
-      </div>
-      <div class="awards fade-up">
-        <div class="award"><span class="award-year">2019</span><span class="award-label">Mejor profesional</span></div>
-        <div class="award"><span class="award-year">2020</span><span class="award-label">Mejor profesional</span></div>
-        <div class="award"><span class="award-year">2021</span><span class="award-label">Mejor profesional</span></div>
-        <div class="award"><span class="award-year">2023</span><span class="award-label">Mejor profesional</span></div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ============ SERVICIOS ============ -->
@@ -173,6 +143,90 @@ $uri = get_template_directory_uri();
   <button class="lightbox-nav lightbox-next" id="lightbox-next">&#8250;</button>
 </div>
 
+<!-- ============ TESTIMONIOS ============ -->
+<section class="testimonios" id="testimonios">
+  <div class="container">
+    <div class="testi-head fade-up">
+      <p class="section-label">Opiniones</p>
+      <h2>Lo que dicen de mí</h2>
+    </div>
+    <div class="testi-grid">
+      <?php
+      $testi_query = new WP_Query( [
+          'post_type'      => 'ac_testimonio',
+          'posts_per_page' => 3,
+      ] );
+      if ( $testi_query->have_posts() ) :
+          while ( $testi_query->have_posts() ) : $testi_query->the_post();
+              $texto      = get_field( 'texto' );
+              $autor      = get_field( 'autor' ) ?: 'Cliente verificado';
+              $evento_t   = get_field( 'evento' );
+              $valoracion = (int) ( get_field( 'valoracion' ) ?: 5 );
+              ?>
+              <div class="testi-card fade-up">
+                <div class="testi-stars"><?php echo str_repeat( '★', max( 1, min( 5, $valoracion ) ) ); ?></div>
+                <p class="testi-text">"<?php echo esc_html( $texto ); ?>"</p>
+                <div class="testi-author"><?php echo esc_html( $autor ); ?></div>
+                <?php if ( $evento_t ) : ?><div class="testi-event"><?php echo esc_html( $evento_t ); ?></div><?php endif; ?>
+              </div>
+          <?php endwhile;
+          wp_reset_postdata();
+      else :
+          $fallback = [
+              [ 'Abel hizo que la fiesta fuera inolvidable. Profesional de principio a fin y consiguió que todo el mundo, mayores y pequeños, estuviera en la pista.', 'Fiesta privada' ],
+              [ 'Un showman de verdad. El repertorio, la puesta en escena y el trato con los invitados fueron perfectos. Lo recomiendo sin duda.', 'Evento de empresa' ],
+              [ 'Contratamos el show + DJ y fue todo un acierto. Abel se adapta al público y sabe leer la sala como nadie.', 'Boda' ],
+          ];
+          foreach ( $fallback as $t ) : ?>
+            <div class="testi-card fade-up">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">"<?php echo esc_html( $t[0] ); ?>"</p>
+              <div class="testi-author">Cliente verificado</div>
+              <div class="testi-event"><?php echo esc_html( $t[1] ); ?></div>
+            </div>
+          <?php endforeach;
+      endif; ?>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIO ============ -->
+<section class="bio" id="bio">
+  <div class="container bio-grid">
+    <div class="bio-image fade-up">
+      <img src="<?php echo esc_url( $uri ); ?>/images/gallery/abel-retrato-chaqueta.jpg" alt="Abel Cabello en directo" />
+    </div>
+    <div class="bio-text">
+      <p class="section-label fade-up">Sobre mí</p>
+      <h2 class="fade-up">Cercano en el escenario,<br><em>profesional</em> en cada detalle.</h2>
+      <p class="fade-up">
+        Empecé mi carrera profesional tras pasar por «Lluvia de Estrellas» de TVE, donde el público me
+        descubrió — y desde entonces no he dejado de subirme a un escenario. Dos años de gira por toda
+        España después, he tenido la suerte de actuar en salas como <strong>Luz de Gas</strong> y en el
+        <strong>Palau de la Música Catalana</strong>.
+      </p>
+      <p class="fade-up">
+        Me defino como un showman polifacético: canto pop, rock, rumba, melódico y boleros de los años 60
+        hasta hoy, con los 80 y los 90 como mi terreno favorito, en español e inglés. Y entre canción y
+        canción, siempre hay hueco para el humor — el monólogo y la complicidad con el público son parte
+        de mi sello.
+      </p>
+      <div class="bio-badges fade-up">
+        <span class="badge">TVE — Lluvia de Estrellas</span>
+        <span class="badge">Luz de Gas, Barcelona</span>
+        <span class="badge">Palau de la Música Catalana</span>
+        <span class="badge">80+ canciones en repertorio</span>
+      </div>
+      <div class="awards fade-up">
+        <div class="award"><span class="award-year">2019</span><span class="award-label">Mejor profesional</span></div>
+        <div class="award"><span class="award-year">2020</span><span class="award-label">Mejor profesional</span></div>
+        <div class="award"><span class="award-year">2021</span><span class="award-label">Mejor profesional</span></div>
+        <div class="award"><span class="award-year">2023</span><span class="award-label">Mejor profesional</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ AGENDA ============ -->
 <section class="agenda" id="agenda">
   <div class="container">
@@ -232,53 +286,6 @@ $uri = get_template_directory_uri();
   </div>
 </section>
 
-<!-- ============ TESTIMONIOS ============ -->
-<section class="testimonios" id="testimonios">
-  <div class="container">
-    <div class="testi-head fade-up">
-      <p class="section-label">Opiniones</p>
-      <h2>Lo que dicen de mí</h2>
-    </div>
-    <div class="testi-grid">
-      <?php
-      $testi_query = new WP_Query( [
-          'post_type'      => 'ac_testimonio',
-          'posts_per_page' => 3,
-      ] );
-      if ( $testi_query->have_posts() ) :
-          while ( $testi_query->have_posts() ) : $testi_query->the_post();
-              $texto      = get_field( 'texto' );
-              $autor      = get_field( 'autor' ) ?: 'Cliente verificado';
-              $evento_t   = get_field( 'evento' );
-              $valoracion = (int) ( get_field( 'valoracion' ) ?: 5 );
-              ?>
-              <div class="testi-card fade-up">
-                <div class="testi-stars"><?php echo str_repeat( '★', max( 1, min( 5, $valoracion ) ) ); ?></div>
-                <p class="testi-text">"<?php echo esc_html( $texto ); ?>"</p>
-                <div class="testi-author"><?php echo esc_html( $autor ); ?></div>
-                <?php if ( $evento_t ) : ?><div class="testi-event"><?php echo esc_html( $evento_t ); ?></div><?php endif; ?>
-              </div>
-          <?php endwhile;
-          wp_reset_postdata();
-      else :
-          $fallback = [
-              [ 'Abel hizo que la fiesta fuera inolvidable. Profesional de principio a fin y consiguió que todo el mundo, mayores y pequeños, estuviera en la pista.', 'Fiesta privada' ],
-              [ 'Un showman de verdad. El repertorio, la puesta en escena y el trato con los invitados fueron perfectos. Lo recomiendo sin duda.', 'Evento de empresa' ],
-              [ 'Contratamos el show + DJ y fue todo un acierto. Abel se adapta al público y sabe leer la sala como nadie.', 'Boda' ],
-          ];
-          foreach ( $fallback as $t ) : ?>
-            <div class="testi-card fade-up">
-              <div class="testi-stars">★★★★★</div>
-              <p class="testi-text">"<?php echo esc_html( $t[0] ); ?>"</p>
-              <div class="testi-author">Cliente verificado</div>
-              <div class="testi-event"><?php echo esc_html( $t[1] ); ?></div>
-            </div>
-          <?php endforeach;
-      endif; ?>
-    </div>
-  </div>
-</section>
-
 <!-- ============ CONTACTO ============ -->
 <section class="contacto" id="contacto">
   <div class="container contacto-grid">
@@ -291,7 +298,11 @@ $uri = get_template_directory_uri();
       <div class="contacto-direct">
         <a href="https://wa.me/34629220296" target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9 9.5 7.7 9.3 7.2c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.3C8.4 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.2-.4-4.6-1.3l-.3-.2-3.2.8.8-3.1-.2-.3C3.4 14.4 3 13.2 3 12c0-4.4 3.6-8 9-8s9 3.6 9 8-4.6 8-9 8z"/></svg>
-          +34 629 22 02 96
+          WhatsApp — 629 22 02 96
+        </a>
+        <a href="tel:+34629220296">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Llamar — 629 22 02 96
         </a>
         <a href="mailto:hola@abelcabello.com">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>
@@ -302,6 +313,7 @@ $uri = get_template_directory_uri();
           @abel.cabello
         </a>
       </div>
+      <p class="contacto-response-note">⏱ Suelo responder en menos de 24h.</p>
     </div>
 
     <div class="contacto-form fade-up">
