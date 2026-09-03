@@ -44,11 +44,20 @@
   // Mobile menu
   var hamburger = document.getElementById('hamburger');
   var nav = document.getElementById('site-nav');
+  var lockedScrollY = 0;
   function setMenu( open ) {
     nav.classList.toggle('open', open);
     hamburger.classList.toggle('active', open);
     hamburger.setAttribute('aria-expanded', open);
-    document.body.classList.toggle('menu-open', open);
+    if ( open ) {
+      lockedScrollY = window.scrollY;
+      document.body.classList.add('menu-open');
+      document.body.style.top = ( -lockedScrollY ) + 'px';
+    } else {
+      document.body.classList.remove('menu-open');
+      document.body.style.top = '';
+      window.scrollTo( 0, lockedScrollY );
+    }
   }
   hamburger.addEventListener('click', function () {
     setMenu( !nav.classList.contains('open') );
@@ -72,9 +81,10 @@
   }, { threshold: 0.15 });
   revealEls.forEach(function (el) { io.observe(el); });
 
-  // Gallery lightbox
-  var galItems = Array.prototype.slice.call(document.querySelectorAll('.gal-item'));
+  // Gallery lightbox (only runs on pages that have a gallery + lightbox markup)
   var lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+  var galItems = Array.prototype.slice.call(document.querySelectorAll('.gal-item'));
   var lbContent = document.getElementById('lightbox-content');
   var lbClose = document.getElementById('lightbox-close');
   var lbPrev = document.getElementById('lightbox-prev');
@@ -126,4 +136,5 @@
     if (e.key === 'ArrowLeft') renderLightbox(currentIndex - 1);
     if (e.key === 'ArrowRight') renderLightbox(currentIndex + 1);
   });
+  } // end lightbox guard
 })();

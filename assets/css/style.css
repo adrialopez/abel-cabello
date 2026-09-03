@@ -37,7 +37,7 @@ body {
   max-width: 100%;
 }
 
-body.menu-open { overflow: hidden; }
+body.menu-open { position: fixed; left: 0; right: 0; overflow: hidden; }
 
 img, video { max-width: 100%; display: block; }
 
