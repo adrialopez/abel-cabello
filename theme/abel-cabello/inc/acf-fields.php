@@ -36,6 +36,15 @@ acf_add_local_field_group( [
             'name'  => 'leyenda',
             'type'  => 'text',
         ],
+        [
+            'key'           => 'field_ac_gal_destacada',
+            'label'         => 'Destacada en la portada',
+            'name'          => 'destacada',
+            'type'          => 'true_false',
+            'instructions'  => 'Márcala para que sea la foto grande del bloque de galería en la portada. Si no marcas ninguna, se usará la primera de la lista.',
+            'ui'            => 1,
+            'default_value' => 0,
+        ],
     ],
     'location' => [ [ [ 'param' => 'post_type', 'operator' => '==', 'value' => 'ac_galeria' ] ] ],
 ] );

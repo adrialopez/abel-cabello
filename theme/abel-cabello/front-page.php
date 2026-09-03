@@ -100,21 +100,35 @@ $uri = get_template_directory_uri();
 
     <div class="gal-grid fade-up" id="gallery-grid">
       <?php
+      // Featured tile: explicitly marked via ACF "destacada", not by position —
+      // positional (e.g. "every 5th item") breaks whenever posts are added/edited/reordered.
+      $featured_query = new WP_Query( [
+          'post_type'      => 'ac_galeria',
+          'posts_per_page' => 1,
+          'meta_query'     => [ [ 'key' => 'destacada', 'value' => '1', 'compare' => '=' ] ],
+      ] );
+      $featured_id = $featured_query->have_posts() ? $featured_query->posts[0]->ID : 0;
+      wp_reset_postdata();
+
       $gal_query = new WP_Query( [
           'post_type'      => 'ac_galeria',
           'posts_per_page' => 9,
           'orderby'        => 'menu_order date',
           'order'          => 'ASC',
+          'post__not_in'   => $featured_id ? [ $featured_id ] : [],
       ] );
-      if ( $gal_query->have_posts() ) :
+      if ( $featured_id || $gal_query->have_posts() ) :
           $i = 0;
-          while ( $gal_query->have_posts() ) : $gal_query->the_post();
+          $posts_to_show = $featured_id ? array_merge( [ get_post( $featured_id ) ], array_slice( $gal_query->posts, 0, 8 ) ) : $gal_query->posts;
+          foreach ( $posts_to_show as $gal_post ) :
+              setup_postdata( $gal_post );
               $i++;
-              $tipo    = get_field( 'tipo' ) ?: 'foto';
-              $imagen  = get_field( 'imagen' );
-              $video   = get_field( 'video_archivo' );
-              $leyenda = get_field( 'leyenda' ) ?: get_the_title();
-              $extra_class = ( 0 === $i % 5 ) ? ' wide tall' : '';
+              $tipo    = get_field( 'tipo', $gal_post->ID ) ?: 'foto';
+              $imagen  = get_field( 'imagen', $gal_post->ID );
+              $video   = get_field( 'video_archivo', $gal_post->ID );
+              $leyenda = get_field( 'leyenda', $gal_post->ID ) ?: get_the_title( $gal_post );
+              $is_featured = $featured_id ? ( $gal_post->ID === $featured_id ) : ( 1 === $i );
+              $extra_class = $is_featured ? ' wide tall' : '';
               ?>
               <div class="gal-item<?php echo esc_attr( $extra_class ); ?>" data-type="<?php echo esc_attr( $tipo ); ?>" data-src="<?php echo esc_url( 'video' === $tipo ? $video : $imagen ); ?>" <?php if ( 'video' === $tipo ) : ?>data-poster="<?php echo esc_url( $imagen ); ?>"<?php endif; ?>>
                 <img src="<?php echo esc_url( $imagen ); ?>" alt="<?php echo esc_attr( $leyenda ); ?>" loading="lazy" />
@@ -122,7 +136,7 @@ $uri = get_template_directory_uri();
                   <div class="gal-play"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="11" fill="rgba(10,10,11,0.55)" stroke="#fff" stroke-width="1"/><path d="M10 8l6 4-6 4V8z"/></svg></div>
                 <?php endif; ?>
               </div>
-          <?php endwhile;
+          <?php endforeach;
           wp_reset_postdata();
       else : ?>
         <p style="color:var(--gray-dim);">Todavía no hay elementos en la galería. Añádelos desde <em>Galería</em> en el escritorio de WordPress.</p>
