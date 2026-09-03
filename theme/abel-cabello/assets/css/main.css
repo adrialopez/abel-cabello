@@ -35,6 +35,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.menu-open { overflow: hidden; }
+
 img, video { max-width: 100%; display: block; }
 
 a { color: inherit; text-decoration: none; }
@@ -157,8 +159,13 @@ section { position: relative; }
   border: none;
   cursor: pointer;
   padding: 6px;
+  position: relative;
+  z-index: 200;
 }
-.hamburger span { width: 24px; height: 2px; background: var(--cream); }
+.hamburger span { width: 24px; height: 2px; background: var(--cream); transition: transform 0.3s var(--ease), opacity 0.2s; }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -569,19 +576,19 @@ section { position: relative; }
   .site-nav.open {
     display: flex;
     position: fixed;
-    top: 0; right: 0;
-    height: 100vh;
-    width: 78%;
-    max-width: 320px;
-    background: var(--dark-2);
+    inset: 0;
+    z-index: 150;
+    width: 100%;
+    max-width: 100%;
+    background: var(--dark);
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 2rem;
     padding: 2rem 2.5rem;
-    box-shadow: -10px 0 40px rgba(0,0,0,0.4);
+    overflow-y: auto;
   }
-  .site-nav.open a { font-size: 1.1rem; }
+  .site-nav.open a { font-size: 1.5rem; }
   .nav-wa-mobile {
     display: flex;
     align-items: center;
@@ -590,30 +597,17 @@ section { position: relative; }
   }
   .form-grid { grid-template-columns: 1fr; }
   .form-grid .full { grid-column: 1; }
+  .serv-grid { grid-template-columns: 1fr; }
   .agenda-row { grid-template-columns: 70px 1fr; }
   .agenda-status { grid-column: 1 / -1; justify-self: start; }
-  .wpcf7-form { grid-template-columns: 1fr; }
 }
 
-/* ---------- Contact Form 7 (booking form) ---------- */
-.wpcf7-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.wpcf7-form-control-wrap { display: block; }
-.wpcf7-form-control-wrap.your-name,
-.wpcf7-form-control-wrap.your-message,
-.wpcf7-form-control-wrap.event-location,
-.wpcf7-form-control-wrap.acceptance-privacy,
-.wpcf7-form > input[type="submit"],
-.wpcf7-response-output {
-  grid-column: 1 / -1;
-}
+/* ---------- Contact Form 7 (booking form) — reuses .form-grid/.field from the mockup ---------- */
+.field .wpcf7-form-control-wrap { display: block; width: 100%; }
+.wpcf7-form-control-wrap[data-name="your-website"],
 .wpcf7-form-control-wrap.your-website { display: none; }
-.wpcf7-form-control-wrap:has(input[type="submit"]) { grid-column: 1 / -1; }
 
-.wpcf7-form .wpcf7-form-control:not([type="checkbox"]):not([type="submit"]) {
+.field .wpcf7-form-control {
   width: 100%;
   background: var(--dark-2);
   border: 1px solid var(--line);
@@ -624,47 +618,29 @@ section { position: relative; }
   font-size: 0.92rem;
   transition: border-color 0.25s, box-shadow 0.25s;
 }
-.wpcf7-form select.wpcf7-form-control { appearance: auto; }
-.wpcf7-form textarea.wpcf7-form-control { min-height: 110px; resize: vertical; }
-.wpcf7-form .wpcf7-form-control:focus {
+.field textarea.wpcf7-form-control { min-height: 110px; resize: vertical; }
+.field .wpcf7-form-control:focus {
   outline: none;
   border-color: var(--wine);
   box-shadow: 0 0 0 1px var(--wine), var(--glow-cyan);
 }
-.wpcf7-form .wpcf7-form-control::placeholder { color: var(--gray-dim); }
+.field .wpcf7-form-control::placeholder { color: var(--gray-dim); }
 
-.wpcf7-form .wpcf7-acceptance .wpcf7-list-item { margin: 0; }
-.wpcf7-form .wpcf7-acceptance label {
+.field-check .wpcf7-list-item { margin: 0; }
+.field-check label {
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  font-size: 0.8rem;
-  color: var(--gray-dim);
   cursor: pointer;
 }
-.wpcf7-form .wpcf7-acceptance input[type="checkbox"] { width: auto; margin-top: 3px; accent-color: var(--gold); }
-.wpcf7-form .wpcf7-acceptance a { color: var(--gray); text-decoration: underline; }
+.field-check input[type="checkbox"] { width: auto; margin-top: 3px; accent-color: var(--gold); }
 
 .wpcf7-form input[type="submit"] {
-  justify-self: start;
-  margin-top: 0.5rem;
-  background: var(--gold);
-  color: #180a14;
-  border: none;
-  border-radius: var(--radius);
-  padding: 0.95rem 1.9rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  font-family: var(--sans);
-  cursor: pointer;
-  box-shadow: var(--glow-pink);
-  transition: all 0.3s var(--ease);
+  margin-top: 1.5rem;
 }
-.wpcf7-form input[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 0 10px rgba(255,63,166,1), 0 0 30px rgba(255,63,166,0.7); }
-.wpcf7-form input[type="submit"]:disabled { opacity: 0.6; cursor: wait; }
 
 .wpcf7-spinner { display: none !important; }
-.wpcf7-not-valid-tip { grid-column: 1/-1; color: var(--wine); font-size: 0.78rem; margin-top: 0.35rem; }
+.wpcf7-not-valid-tip { color: var(--wine); font-size: 0.78rem; margin-top: 0.35rem; display: block; }
 .wpcf7-response-output {
   border-radius: 8px;
   padding: 0.85rem 1rem;

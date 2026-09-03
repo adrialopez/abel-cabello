@@ -44,15 +44,20 @@
   // Mobile menu
   var hamburger = document.getElementById('hamburger');
   var nav = document.getElementById('site-nav');
-  hamburger.addEventListener('click', function () {
-    var open = nav.classList.toggle('open');
+  function setMenu( open ) {
+    nav.classList.toggle('open', open);
+    hamburger.classList.toggle('active', open);
     hamburger.setAttribute('aria-expanded', open);
+    document.body.classList.toggle('menu-open', open);
+  }
+  hamburger.addEventListener('click', function () {
+    setMenu( !nav.classList.contains('open') );
   });
   nav.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      nav.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-    });
+    a.addEventListener('click', function () { setMenu( false ); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if ( e.key === 'Escape' ) setMenu( false );
   });
 
   // Fade-up reveal on scroll
