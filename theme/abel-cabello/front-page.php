@@ -60,9 +60,9 @@ $uri = get_template_directory_uri();
         </div>
       </div>
       <div class="serv-card fade-up">
-        <div class="serv-card-img"><img src="<?php echo esc_url( $uri ); ?>/images/brand/servicio-dj.jpg" alt="DJ CK Boo con Abel Cabello" /></div>
+        <div class="serv-card-img"><img src="<?php echo esc_url( $uri ); ?>/images/brand/servicio-dj-ckboo.jpg" alt="DJ CK Boo con Abel Cabello" /></div>
         <div class="serv-card-body">
-          <h3>DJ</h3>
+          <h3>DJ CkBoo</h3>
           <p>Sesión con <a href="https://adria-lopez.com/dj-ckboo/" target="_blank" rel="noopener">CK Boo</a> para alargar la fiesta cuando el show termina — la pista no para.</p>
           <span class="serv-price">A consultar</span>
         </div>
